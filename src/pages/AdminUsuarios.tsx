@@ -90,7 +90,7 @@ export default function AdminUsuarios() {
   const [papelFilter, setPapelFilter] = useState("todos")
 
   usePageSEO({
-    title: "Admin • Usuários | Cooperado Hub",
+    title: "Admin • Usuários | Cooperado Agro Hub",
     description: "Gerencie usuários e permissões do sistema.",
     canonical: window.location.href,
   })

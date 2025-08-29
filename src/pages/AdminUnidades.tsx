@@ -95,7 +95,7 @@ export default function AdminUnidades() {
   const [tipoFilter, setTipoFilter] = useState("todos")
 
   usePageSEO({
-    title: "Admin • Unidades | Cooperado Hub",
+    title: "Admin • Unidades | Cooperado Agro Hub",
     description: "Cadastro e gestão de unidades do tenant.",
     canonical: window.location.href,
   })

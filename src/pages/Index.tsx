@@ -8,11 +8,14 @@ import {
   Clock,
   CheckCircle
 } from "lucide-react"
+import { useNavigate } from "react-router-dom"
 import { Layout } from "@/components/Layout"
 import { DashboardCard } from "@/components/DashboardCard"
 import { QuickActions } from "@/components/QuickActions"
 
 const Index = () => {
+  const navigate = useNavigate()
+
   return (
     <Layout>
       <div className="space-y-6">
@@ -36,7 +39,7 @@ const Index = () => {
               isPositive: true
             }}
             actions={[
-              { label: "Ver todos", onClick: () => console.log("Ver cooperados") }
+              { label: "Ver todos", onClick: () => navigate("/cooperados") }
             ]}
           />
 
@@ -50,7 +53,7 @@ const Index = () => {
               { label: "16 concluídas", variant: "success" }
             ]}
             actions={[
-              { label: "Ver fila", onClick: () => console.log("Ver operações") }
+              { label: "Ver fila", onClick: () => navigate("/operacoes") }
             ]}
           />
 
@@ -63,7 +66,7 @@ const Index = () => {
               { label: "R$ 45.320 em atraso", variant: "destructive" }
             ]}
             actions={[
-              { label: "Ver detalhes", onClick: () => console.log("Ver financeiro") }
+              { label: "Ver detalhes", onClick: () => navigate("/fiscal") }
             ]}
           />
 
@@ -77,7 +80,7 @@ const Index = () => {
               { label: "3 com erro", variant: "destructive" }
             ]}
             actions={[
-              { label: "Verificar", onClick: () => console.log("Ver fiscal") }
+              { label: "Verificar", onClick: () => navigate("/fiscal") }
             ]}
           />
         </div>
@@ -90,8 +93,8 @@ const Index = () => {
             description="Aguardando pesagem/classificação"
             icon={<Clock className="h-4 w-4" />}
             actions={[
-              { label: "+ Novo Romaneio", onClick: () => console.log("Novo romaneio"), variant: "default" },
-              { label: "Ver todos", onClick: () => console.log("Ver romaneios"), variant: "outline" }
+              { label: "+ Novo Romaneio", onClick: () => navigate("/operacoes"), variant: "default" },
+              { label: "Ver todos", onClick: () => navigate("/operacoes"), variant: "outline" }
             ]}
           />
 
@@ -106,7 +109,7 @@ const Index = () => {
               { label: "63% participação", variant: "default" }
             ]}
             actions={[
-              { label: "Ver resultados", onClick: () => console.log("Ver assembleia") }
+              { label: "Ver resultados", onClick: () => navigate("/governanca") }
             ]}
           />
 
@@ -116,8 +119,8 @@ const Index = () => {
             description="Visitas agendadas para hoje"
             icon={<TrendingUp className="h-4 w-4" />}
             actions={[
-              { label: "+ Nova OS", onClick: () => console.log("Nova OS"), variant: "default" },
-              { label: "Ver agenda", onClick: () => console.log("Ver agenda"), variant: "outline" }
+              { label: "+ Nova OS", onClick: () => navigate("/operacoes"), variant: "default" },
+              { label: "Ver agenda", onClick: () => navigate("/operacoes"), variant: "outline" }
             ]}
           />
         </div>

@@ -121,7 +121,7 @@ export default function Governanca() {
   const [activeTab, setActiveTab] = useState("assembleias")
 
   usePageSEO({
-    title: "Governança | Cooperado Hub",
+    title: "Governança | Cooperado Agro Hub",
     description: "Assembleias, votos e assistência técnica.",
     canonical: window.location.href,
   })

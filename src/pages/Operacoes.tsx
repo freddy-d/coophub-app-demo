@@ -1,31 +1,24 @@
-import { useState } from "react";
-import {
-  Calendar,
-  Plus,
-  Truck,
-  Clock,
-  CheckCircle,
+import { useState } from "react"
+import { 
+  Calendar, 
+  Plus, 
+  Truck, 
+  Clock, 
+  CheckCircle, 
   AlertCircle,
   QrCode,
   Scale,
   FileText,
   Eye,
-  Printer,
-} from "lucide-react";
-import { Layout } from "@/components/Layout";
-import { usePageSEO } from "@/hooks/usePageSEO";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+  Printer
+} from "lucide-react"
+import { Layout } from "@/components/Layout"
+import { usePageSEO } from "@/hooks/usePageSEO"
+import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 const agendamentos = [
   {
@@ -36,7 +29,7 @@ const agendamentos = [
     produto: "Soja",
     cooperado: "João Silva Santos",
     status: "Confirmado",
-    qrCode: "QR123456",
+    qrCode: "QR123456"
   },
   {
     id: 2,
@@ -46,7 +39,7 @@ const agendamentos = [
     produto: "Milho",
     cooperado: "Fazenda Santa Maria",
     status: "Check-in",
-    qrCode: "QR789012",
+    qrCode: "QR789012"
   },
   {
     id: 3,
@@ -56,9 +49,9 @@ const agendamentos = [
     produto: "Trigo",
     cooperado: "Carlos Roberto",
     status: "Aguardando",
-    qrCode: "QR345678",
-  },
-];
+    qrCode: "QR345678"
+  }
+]
 
 const romaneios = [
   {
@@ -72,7 +65,7 @@ const romaneios = [
     liquido: "11.250",
     umidade: "12.5%",
     impureza: "1.2%",
-    status: "Fechado",
+    status: "Fechado"
   },
   {
     id: 2,
@@ -85,7 +78,7 @@ const romaneios = [
     liquido: "14.800",
     umidade: "13.8%",
     impureza: "0.8%",
-    status: "Rascunho",
+    status: "Rascunho"
   },
   {
     id: 3,
@@ -98,48 +91,37 @@ const romaneios = [
     liquido: "8.200",
     umidade: "11.2%",
     impureza: "1.5%",
-    status: "Fechado",
-  },
-];
+    status: "Fechado"
+  }
+]
 
 export default function Operacoes() {
-  const [activeTab, setActiveTab] = useState("agendamentos");
+  const [activeTab, setActiveTab] = useState("agendamentos")
 
   usePageSEO({
-    title: "Operações | Cooperado Hub",
-    description:
-      "Agendamentos e Romaneios para reduzir filas e formalizar entregas.",
+    title: "Operações | Cooperado Agro Hub",
+    description: "Agendamentos e Romaneios para reduzir filas e formalizar entregas.",
     canonical: window.location.href,
-  });
+  })
 
   const getStatusVariant = (status: string) => {
     switch (status) {
-      case "Confirmado":
-        return "default";
-      case "Check-in":
-        return "success";
-      case "Aguardando":
-        return "warning";
-      case "Fechado":
-        return "success";
-      case "Rascunho":
-        return "warning";
-      default:
-        return "default";
+      case "Confirmado": return "default"
+      case "Check-in": return "success"
+      case "Aguardando": return "warning"
+      case "Fechado": return "success"
+      case "Rascunho": return "warning"
+      default: return "default"
     }
-  };
+  }
 
   return (
     <Layout>
       <header className="mb-6">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-2xl font-semibold text-foreground">
-              Operações
-            </h1>
-            <p className="text-sm text-muted-foreground">
-              Agendamentos & Romaneios
-            </p>
+            <h1 className="text-2xl font-semibold text-foreground">Operações</h1>
+            <p className="text-sm text-muted-foreground">Agendamentos & Romaneios</p>
           </div>
           <div className="flex gap-2">
             {activeTab === "agendamentos" ? (
@@ -166,15 +148,13 @@ export default function Operacoes() {
                 <Calendar className="h-5 w-5 text-primary" />
               </div>
               <div>
-                <p className="text-sm text-muted-foreground">
-                  Agendamentos Hoje
-                </p>
+                <p className="text-sm text-muted-foreground">Agendamentos Hoje</p>
                 <p className="text-xl font-semibold">24</p>
               </div>
             </div>
           </CardContent>
         </Card>
-
+        
         <Card>
           <CardContent className="p-4">
             <div className="flex items-center gap-3">
@@ -210,9 +190,7 @@ export default function Operacoes() {
                 <FileText className="h-5 w-5 text-secondary-foreground" />
               </div>
               <div>
-                <p className="text-sm text-muted-foreground">
-                  Romaneios Abertos
-                </p>
+                <p className="text-sm text-muted-foreground">Romaneios Abertos</p>
                 <p className="text-xl font-semibold">5</p>
               </div>
             </div>
@@ -255,12 +233,8 @@ export default function Operacoes() {
                   {agendamentos.map((agendamento) => (
                     <TableRow key={agendamento.id}>
                       <TableCell>{agendamento.data}</TableCell>
-                      <TableCell className="font-mono text-sm">
-                        {agendamento.janela}
-                      </TableCell>
-                      <TableCell className="font-mono font-medium">
-                        {agendamento.placa}
-                      </TableCell>
+                      <TableCell className="font-mono text-sm">{agendamento.janela}</TableCell>
+                      <TableCell className="font-mono font-medium">{agendamento.placa}</TableCell>
                       <TableCell>{agendamento.produto}</TableCell>
                       <TableCell>{agendamento.cooperado}</TableCell>
                       <TableCell>
@@ -314,26 +288,16 @@ export default function Operacoes() {
                 <TableBody>
                   {romaneios.map((romaneio) => (
                     <TableRow key={romaneio.id}>
-                      <TableCell className="font-mono font-medium">
-                        {romaneio.numero}
-                      </TableCell>
+                      <TableCell className="font-mono font-medium">{romaneio.numero}</TableCell>
                       <TableCell>{romaneio.unidade}</TableCell>
                       <TableCell>{romaneio.produto}</TableCell>
                       <TableCell>{romaneio.cooperado}</TableCell>
-                      <TableCell className="font-mono">
-                        {romaneio.bruto} kg
-                      </TableCell>
-                      <TableCell className="font-mono font-medium">
-                        {romaneio.liquido} kg
-                      </TableCell>
+                      <TableCell className="font-mono">{romaneio.bruto} kg</TableCell>
+                      <TableCell className="font-mono font-medium">{romaneio.liquido} kg</TableCell>
                       <TableCell>
                         <div className="space-y-1">
-                          <div className="text-xs">
-                            Umid: {romaneio.umidade}
-                          </div>
-                          <div className="text-xs">
-                            Imp: {romaneio.impureza}
-                          </div>
+                          <div className="text-xs">Umid: {romaneio.umidade}</div>
+                          <div className="text-xs">Imp: {romaneio.impureza}</div>
                         </div>
                       </TableCell>
                       <TableCell>
@@ -365,5 +329,5 @@ export default function Operacoes() {
         </TabsContent>
       </Tabs>
     </Layout>
-  );
+  )
 }

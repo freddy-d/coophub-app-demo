@@ -88,7 +88,7 @@ export default function Fiscal() {
   const [activeTab, setActiveTab] = useState("documentos")
 
   usePageSEO({
-    title: "Fiscal & Financeiro | Cooperado Hub",
+    title: "Fiscal & Financeiro | Cooperado Agro Hub",
     description: "Inbox fiscal, emissão básica e cobranças Pix/Boletos.",
     canonical: window.location.href,
   })
