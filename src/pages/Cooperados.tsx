@@ -8,6 +8,9 @@ import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { ActionDialog } from "@/components/ActionDialog"
+import { FilterDialog } from "@/components/FilterDialog"
+import { ExportDialog } from "@/components/ExportDialog"
 import { 
   Users, 
   UserPlus, 
@@ -22,7 +25,8 @@ import {
   MapPin,
   Calendar,
   Edit,
-  Trash2
+  Trash2,
+  Eye
 } from "lucide-react"
 
 export default function Cooperados() {
@@ -56,10 +60,17 @@ export default function Cooperados() {
             <h1 className="text-2xl font-semibold text-foreground">Cooperados</h1>
             <p className="text-sm text-muted-foreground">Gestão 360 do cooperado</p>
           </header>
-          <Button className="gap-2">
-            <UserPlus className="h-4 w-4" />
-            Novo Cooperado
-          </Button>
+          <ActionDialog
+            trigger={
+              <Button className="gap-2">
+                <UserPlus className="h-4 w-4" />
+                Novo Cooperado
+              </Button>
+            }
+            title="Adicionar Novo Cooperado"
+            description="Preencha os dados para cadastrar um novo cooperado"
+            action="add"
+          />
         </div>
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
@@ -132,14 +143,24 @@ export default function Cooperados() {
                     className="pl-10"
                   />
                 </div>
-                <Button variant="outline" className="gap-2">
-                  <Filter className="h-4 w-4" />
-                  Filtros
-                </Button>
-                <Button variant="outline" className="gap-2">
-                  <Download className="h-4 w-4" />
-                  Exportar
-                </Button>
+                <FilterDialog
+                  trigger={
+                    <Button variant="outline" className="gap-2">
+                      <Filter className="h-4 w-4" />
+                      Filtros
+                    </Button>
+                  }
+                />
+                <ExportDialog
+                  trigger={
+                    <Button variant="outline" className="gap-2">
+                      <Download className="h-4 w-4" />
+                      Exportar
+                    </Button>
+                  }
+                  data={filteredCooperados}
+                  filename="cooperados"
+                />
                 <Button variant="outline" className="gap-2">
                   <Upload className="h-4 w-4" />
                   Importar
@@ -202,16 +223,53 @@ export default function Cooperados() {
                               {cooperado.ingresso}
                             </div>
                           </TableCell>
-                          <TableCell className="text-right">
-                            <div className="flex items-center justify-end gap-2">
-                              <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
-                                <Edit className="h-4 w-4" />
-                              </Button>
-                              <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
-                                <Trash2 className="h-4 w-4" />
-                              </Button>
-                            </div>
-                          </TableCell>
+                           <TableCell className="text-right">
+                             <div className="flex items-center justify-end gap-2">
+                               <ActionDialog
+                                 trigger={
+                                   <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
+                                     <Eye className="h-4 w-4" />
+                                   </Button>
+                                 }
+                                 title="Visualizar Cooperado"
+                                 description="Informações detalhadas do cooperado"
+                                 action="view"
+                                 data={{
+                                   name: cooperado.nome,
+                                   email: cooperado.email,
+                                   role: cooperado.unidade,
+                                   status: cooperado.status,
+                                   lastAccess: cooperado.ingresso
+                                 }}
+                               />
+                               <ActionDialog
+                                 trigger={
+                                   <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
+                                     <Edit className="h-4 w-4" />
+                                   </Button>
+                                 }
+                                 title="Editar Cooperado"
+                                 description="Edite as informações do cooperado"
+                                 action="edit"
+                                 data={{
+                                   name: cooperado.nome,
+                                   email: cooperado.email,
+                                   role: cooperado.unidade
+                                 }}
+                               />
+                               <ActionDialog
+                                 trigger={
+                                   <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
+                                     <Trash2 className="h-4 w-4" />
+                                   </Button>
+                                 }
+                                 title="Excluir Cooperado"
+                                 description="Tem certeza que deseja excluir este cooperado?"
+                                 action="delete"
+                                 data={cooperado}
+                               />
+                             </div>
+                           </TableCell>
                         </TableRow>
                       ))}
                     </TableBody>
@@ -284,16 +342,53 @@ export default function Cooperados() {
                               {cooperado.ingresso}
                             </div>
                           </TableCell>
-                          <TableCell className="text-right">
-                            <div className="flex items-center justify-end gap-2">
-                              <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
-                                <Edit className="h-4 w-4" />
-                              </Button>
-                              <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
-                                <Trash2 className="h-4 w-4" />
-                              </Button>
-                            </div>
-                          </TableCell>
+                           <TableCell className="text-right">
+                             <div className="flex items-center justify-end gap-2">
+                               <ActionDialog
+                                 trigger={
+                                   <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
+                                     <Eye className="h-4 w-4" />
+                                   </Button>
+                                 }
+                                 title="Visualizar Cooperado"
+                                 description="Informações detalhadas do cooperado"
+                                 action="view"
+                                 data={{
+                                   name: cooperado.nome,
+                                   email: cooperado.email,
+                                   role: cooperado.unidade,
+                                   status: cooperado.status,
+                                   lastAccess: cooperado.ingresso
+                                 }}
+                               />
+                               <ActionDialog
+                                 trigger={
+                                   <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
+                                     <Edit className="h-4 w-4" />
+                                   </Button>
+                                 }
+                                 title="Editar Cooperado"
+                                 description="Edite as informações do cooperado"
+                                 action="edit"
+                                 data={{
+                                   name: cooperado.nome,
+                                   email: cooperado.email,
+                                   role: cooperado.unidade
+                                 }}
+                               />
+                               <ActionDialog
+                                 trigger={
+                                   <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
+                                     <Trash2 className="h-4 w-4" />
+                                   </Button>
+                                 }
+                                 title="Excluir Cooperado"
+                                 description="Tem certeza que deseja excluir este cooperado?"
+                                 action="delete"
+                                 data={cooperado}
+                               />
+                             </div>
+                           </TableCell>
                         </TableRow>
                       ))}
                     </TableBody>
