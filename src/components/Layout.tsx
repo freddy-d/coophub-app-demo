@@ -19,7 +19,7 @@ export function Layout({ children }: LayoutProps) {
               espera clique no seguinte botão
             </span>
             <a
-              href="https://coophub-app-demo-ur18.vercel.app/"
+              href="https://coophub-app.vercel.app/"
               className="ml-4 bg-white text-blue-600 px-3 py-1 rounded-lg text-sm font-semibold hover:bg-gray-100"
             >
               Voltar Site Espera
